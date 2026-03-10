@@ -1,0 +1,26 @@
+module tb_signed_comparator;
+  reg [3:0] A;
+  reg [3:0] B;
+  wire greater;
+  wire less;
+  wire equal;
+  
+  signed_comparator dut(
+    .A(A),
+    .B(B),
+    .greater(greater),
+    .less(less),
+    .equal(equal) );
+  
+  initial begin
+    
+    $monitor("Time=%0t | A=%b | B=%b | greater=%b | less=%b | equal=%b", $time, A, B, greater, less, equal);
+ 
+    A=$random % 16;
+    B=$random % 16;
+    #10;
+    
+    $finish;
+  end
+    
+    endmodule
