@@ -1,0 +1,25 @@
+
+module tb_comparator_4_bit;
+  
+  reg[3:0] a, b;
+  wire a_lt_b, a_gt_b, a_eq_b;
+  
+  comparator_4_bit dut (
+    .a(a),
+    .b(b),
+    .a_lt_b(a_lt_b),
+    .a_gt_b(a_gt_b),
+    .a_eq_b(a_eq_b) );
+  
+  initial begin
+
+#5 $monitor("$Time=%0t | a=%b | b=%b | a_lt_b=%b | a_gt_b=%b | a_eq_b=%b", $time, a, b, a_lt_b, a_gt_b, a_eq_b);
+    
+    a=0; a=0; a=1; a=1; #5;
+    b=0; b=0; b=1; b=0; #5;
+    a=1; a=1; a=1; a=1; #5;
+    a=0; a=0; a=0; a=0; #5;
+$finish;
+  end
+endmodule
+    
