@@ -1,0 +1,25 @@
+// Code your testbench here
+// or browse Examples
+module tb_half_adder;
+  reg a; 
+  reg b;
+  wire s, c;
+  
+  half_adder dut (
+    .a(a),
+    .b(b),
+    .s(s),
+    .c(c) );
+  
+  initial begin
+    
+    $monitor("Time=%0t | a=%b | b=%b | s=%b | c=%b", $time, a, b, s, c);
+  
+    a=0; b=0; #5;
+    a=0; b=1; #5;
+    a=1; b=0; #5;
+    a=1; b=1; #5;
+    
+    $finish;
+  end
+endmodule
