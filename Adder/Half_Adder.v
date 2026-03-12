@@ -16,3 +16,17 @@ module half_adder(
   and(CARRY,A,B);
   
 endmodule
+
+// Complier Director
+
+`timescale 1ns/1ps  
+`define WIDTH 1   
+module half_adder(
+    input  [`WIDTH-1:0] a, b,
+    output [`WIDTH-1:0] sum,
+    output [`WIDTH-1:0] carry
+);
+    assign sum   = a ^ b;  
+    assign carry = a & b;  
+
+endmodule
