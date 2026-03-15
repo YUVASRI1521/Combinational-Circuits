@@ -1,0 +1,84 @@
+// 2:4 decoder
+
+module tb_decoder_2to4();
+    reg  [1:0] in;
+    reg  en;
+    wire [3:0] out;
+
+    
+    decoder_2to4 uut (
+        .in(in),
+        .en(en),
+        .out(out)
+    );
+
+    initial begin
+        $display("Time\t en in -> out");
+        $monitor("%0t\t %b  %b -> %b", $time, en, in, out);
+
+        
+        en = 1; in = 2'b00; #10;
+        in = 2'b01; #10;
+        in = 2'b10; #10;
+        in = 2'b11; #10;
+
+        en = 0; in = 2'b10; #10;  
+
+        $finish;
+    end
+endmodule
+
+// 3:8 decoder
+
+module tb_decoder_3_8;
+
+reg [2:0] I;
+reg En;
+wire [7:0] d;
+
+decoder_3_8 dut(
+  .I(I),
+  .En(En),
+  .d(d)
+);
+
+initial begin
+
+  $monitor("Time=%0t | I=%b | En=%b | d=%b ", $time, I, En, d);
+
+  En = 1;     // Enable ON
+  I = 3'b000; #5;
+  I = 3'b001; #5;
+  I = 3'b010; #5;
+  I = 3'b011; #5;
+  I = 3'b100; #5;
+  I = 3'b101; #5;
+  I = 3'b110; #5;
+  I = 3'b111; #5;
+
+  $finish;
+end
+endmodule
+
+// 4:16 decoder
+
+module tb_decoder_416;
+
+  reg  [3:0] A;
+  wire [15:0] Y;
+
+  decoder_416 dut(.A(A), .Y(Y));
+
+  integer i;
+
+  initial begin
+    $monitor("Time=%0t | A=%b | Y=%b", $time, A, Y);
+
+    for (i = 0; i < 16; i = i + 1) begin
+      A = i;
+      #5;
+    end
+
+    $finish;
+  end
+endmodule
