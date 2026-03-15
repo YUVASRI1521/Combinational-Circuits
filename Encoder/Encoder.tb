@@ -1,0 +1,48 @@
+// 4:2 ENCODER
+ 
+module tb_encoder_42;
+  reg[3:0] I;
+  wire[1:0] Y;
+  
+  encoder_42 dut( .I(I),
+                 .Y(Y) );
+  
+  initial begin
+    I=4'b0000;
+    $monitor("$Time=%0t | I=%b | Y=%b |", $time, I, Y);
+  
+       I=4'b0001; #5;
+       I=4'b0010; #5;
+       I=4'b0100; #5;
+       I=4'b1000; #5;
+    
+  $finish;
+  end
+endmodule
+
+// 8:3 ENCODER
+
+module tb_encoder_83;
+  reg[7:0] I;
+  wire[2:0] Y;
+  
+  encoder_83 dut(
+    .I(I),
+    .Y(Y) );
+  
+  initial begin
+I=8'b0;
+    $monitor("Time=%0t | I=%b | Y=%b|", $time, I, Y);
+    
+           8'b00000001; #5;
+      8'b00000010; #5;
+      8'b00000100; #5;
+      8'b00001000; #5;
+      8'b00010000; #5;
+      8'b00100000; #5;
+      8'b01000000; #5;
+      8'b10000000; #5;
+    $finish;
+  end
+endmodule
+      
