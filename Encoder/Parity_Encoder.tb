@@ -1,0 +1,31 @@
+// 3-BIT ENCODER
+module tb_parity;
+  reg[2:0] A;
+  wire P_odd;
+  wire P_even;
+  
+   integer i;
+  
+  parity_odd dut(
+    .A(A),
+    .P(P_odd) );
+  
+  parity_even dut1(
+    .A(A),
+    .P(P_even) );
+  
+  initial begin
+    
+    $dumpfile("dump.vcd");
+    $dumpvars(0, tb_parity);
+    
+    
+    $monitor("Time%0t | A=%b | P_odd=%b | P_even=%b", $time, A, P_odd, P_even);
+    
+    for(i=0; i<8; i=i+1) begin
+      A=i;
+      #5;
+    end
+    $finish;
+  end
+endmodule
